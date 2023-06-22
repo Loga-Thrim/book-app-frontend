@@ -1,0 +1,60 @@
+<div class="container">
+  <div class="nav-container">
+    <h1>Book Editor</h1>
+    <br />
+
+    <mat-form-field style="width: 70%">
+      <mat-label>หน้าที่</mat-label>
+      <mat-select [(value)]="page">
+        <mat-option
+          *ngFor="let page of book"
+          [value]="page.value"
+          (click)="selectPage(page.value)"
+        >
+          {{ page.viewValue }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
+    <div class="button-container">
+      <button mat-raised-button (click)="addPage()">
+        + เพิ่มหน้า
+      </button>
+      <button
+        mat-raised-button
+        color="warn"
+        (click)="deletePage()"
+        [disabled]="isDisabled()"
+      >
+        ลบหน้า
+      </button>
+    </div>
+    <button
+      mat-raised-button
+      color="primary"
+      class="btn-submit"
+      (click)="submit()"
+    >
+      Submit
+    </button>
+  </div>
+
+  <div class="editor-container">
+    <div class="editor">
+      <editor
+        apiKey="bobkfxolpgkcg2dc6arl28ovia290ia21re5st5fxaqiqls0"
+        [init]="{
+          base_url: '/tinymce',
+          suffix: '.min',
+          height: 800,
+          menubar: false,
+          plugins:
+            'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+          toolbar:
+            'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat'
+        }"
+        [(ngModel)]="dataModel"
+      ></editor>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<div class="container">
+  <div class="book">
+    <div id="pages" class="pages">
+      <div *ngFor="let page of pages" class="page">
+        <div [innerHTML]="page.content"></div>
+      </div>
+    </div>
+  </div>
+</div>

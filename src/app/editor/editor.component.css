@@ -1,0 +1,45 @@
+* {
+  margin: 0;
+}
+
+.container {
+  width: 100%;
+  height: auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 24px 36px;
+  padding-bottom: 62px;
+  background: rgb(245, 245, 245);
+
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-container {
+  width: 25%;
+}
+
+.nav-container .button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 70%;
+  gap: 12px;
+}
+
+.nav-container .button-container > button {
+  width: 50%;
+}
+
+.editor-container {
+  width: 75%;
+}
+
+.editor-container .editor {
+  width: 50vw;
+}
+
+.btn-submit {
+  margin-top: 24px;
+  width: 70%;
+  padding: 24px 0 !important;
+}
