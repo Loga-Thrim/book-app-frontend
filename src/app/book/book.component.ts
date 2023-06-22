@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { env } from 'src/environments/environment';
 
 interface Book {
   number: number;
-  content: string;
+  content: SafeHtml;
 }
 
 @Component({
@@ -14,13 +15,16 @@ interface Book {
 export class BookComponent {
   public pages: Book[] = [];
 
+  constructor(private sanitizer: DomSanitizer) {}
+
   ngOnInit() {
     fetch(env.apiUrl + '/book')
       .then((res: any) => res.json())
       .then((res: any) => {
         let pages = res.book.map(
-          (e: any): Book => ({ number: e.number, content: e.content })
+          (e: any): Book => ({ number: e.number, content: this.sanitizer.bypassSecurityTrustHtml(e.content) })
         );
+        console.log(pages)
         if (pages.length % 2 === 1) {
           pages.push({ number: pages.length - 4 + 1, content: '' });
           pages = pages.sort((a: Book, b: Book) => a.number - b.number);
